@@ -1,5 +1,7 @@
 # funpack
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/d0daac35b65f49c51068/maintainability)](https://codeclimate.com/github/container-labs/funpack/maintainability)
+
 like `webpack`, but for functions
 
 ## into
