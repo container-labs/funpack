@@ -80,5 +80,5 @@
     "start": "node functions/index.js -e local",
     "flow": "flow"
   },
-  "version": "0.3.0"
+  "version": "0.4.0"
 }
