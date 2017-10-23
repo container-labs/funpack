@@ -10,8 +10,10 @@ var _child_process = _interopRequireDefault(require("child_process"));
 
 var _package = _interopRequireDefault(require("../package.json"));
 
+var _logResult = _interopRequireDefault(require("./logResult"));
+
 const exec = _child_process.default.exec;
-const packageVersion = _package.default['version'];
+const packageVersion = _package.default.version;
 
 _commander.default.version(packageVersion);
 
@@ -20,39 +22,39 @@ _commander.default.option('-e, --environment [environment]', 'NODE_ENV to use wh
 _commander.default.parse(process.argv);
 
 console.log('commander env', _commander.default.environment);
-let environment = 'local';
+let environment;
 
 if (_commander.default.environment) {
   environment = _commander.default.environment;
-}
+} // 1. delete the output directory
+// 2. use babel cli to transpile
 
-function logResult(error, stdout, stderr) {
-  if (error !== null) {
-    console.error('exec error: ' + error);
-    return;
-  }
 
-  if (stderr) {
-    console.error('stderr: ' + stderr);
-    return;
-  }
+new _promise.default((resolve, reject) => {
+  exec('rimraf functions', (error, stdout, stderr) => {
+    (0, _logResult.default)(error, stdout, stderr);
 
-  console.log(stdout);
-}
+    if (error || stderr) {
+      reject();
+      return;
+    }
 
-const rimrafPromise = new _promise.default((resolve, reject) => {
-  exec(`rimraf functions`, (error, stdout, stderr) => {
-    logResult(error, stdout, stderr);
     resolve();
   });
-});
-const babelPromise = rimrafPromise.then(() => {
-  return new _promise.default((resolve, reject) => {
-    exec(`NODE_ENV='${environment}' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'`, (error, stdout, stderr) => {
-      logResult(error, stdout, stderr);
-    });
+}).then(() => new _promise.default((resolve, reject) => {
+  exec(`NODE_ENV='${environment}' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'`, (error, stdout, stderr) => {
+    (0, _logResult.default)(error, stdout, stderr);
+
+    if (error || stderr) {
+      reject();
+      return;
+    }
+
+    resolve();
   });
-});
-babelPromise.then(() => {
+})).then(() => {
   console.log('functions fun-packed');
+}).catch(error => {
+  console.error(error);
+  process.exit(1);
 });
