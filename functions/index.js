@@ -8,6 +8,8 @@ var _commander = _interopRequireDefault(require("commander"));
 
 var _child_process = _interopRequireDefault(require("child_process"));
 
+var _rimraf = _interopRequireDefault(require("rimraf"));
+
 var _package = _interopRequireDefault(require("../package.json"));
 
 var _logResult = _interopRequireDefault(require("./logResult"));
@@ -31,10 +33,8 @@ if (_commander.default.environment) {
 
 
 new _promise.default((resolve, reject) => {
-  exec('rimraf functions', (error, stdout, stderr) => {
-    (0, _logResult.default)(error, stdout, stderr);
-
-    if (error || stderr) {
+  (0, _rimraf.default)('functions/*', error => {
+    if (error) {
       reject();
       return;
     }

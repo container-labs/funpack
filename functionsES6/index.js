@@ -2,6 +2,7 @@
 
 import commander from 'commander';
 import childProcess from 'child_process';
+import rimraf from 'rimraf';
 
 import packageFile from '../package.json';
 import logResult from './logResult';
@@ -27,9 +28,8 @@ if (commander.environment) {
 // 1. delete the output directory
 // 2. use babel cli to transpile
 new Promise((resolve, reject) => {
-  exec('rimraf functions', (error, stdout, stderr) => {
-    logResult(error, stdout, stderr);
-    if (error || stderr) {
+  rimraf('functions/*', (error) => {
+    if (error) {
       reject();
       return;
     }
