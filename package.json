@@ -1,0 +1,82 @@
+{
+  "name": "@containerlabs/funpack",
+  "description": "like webpack, but for functions",
+  "author": "will beebe",
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "6.11.1"
+          }
+        }
+      ],
+      "stage-2",
+      "flow"
+    ],
+    "plugins": [
+      "add-module-exports",
+      "transform-flow-strip-types",
+      "transform-runtime",
+      "transform-imports",
+      "transform-inline-environment-variables"
+    ]
+  },
+  "bin": {
+    "funpack": "./functions/bin/funpack.js"
+  },
+  "bugs": {
+    "url": "https://github.com/container-labs/funpack/issues"
+  },
+  "homepage": "https://github.com/container-labs/funpack#readme",
+  "dependencies": {
+    "babel-runtime": "^7.0.0-beta.3",
+    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-cli": "^7.0.0-beta.3",
+    "babel-core": "^7.0.0-beta.3",
+    "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "babel-preset-flow": "^7.0.0-beta.3",
+    "babel-preset-stage-2": "^7.0.0-beta.3",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-transform-imports": "^1.4.1",
+    "babel-plugin-transform-runtime": "^7.0.0-beta.3",
+    "babel-plugin-transform-inline-environment-variables": "^0.2.0",
+    "eslint": "4.8.0",
+    "eslint-config-airbnb": "15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "flow-bin": "^0.57.3"
+  },
+  "keywords": [
+    "compiler",
+    "functions",
+    "serverless",
+    "babel",
+    "es6",
+    "transpile"
+  ],
+  "license": "MIT",
+  "main": "functions/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/container-labs/funpack.git"
+  },
+  "peerDependencies": {
+    "babel-runtime": "^7.0.0-beta.3",
+    "babel-preset-env": "^7.0.0-beta.3"
+  },
+  "scripts": {
+    "package-functions-production": "NODE_ENV='production' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ppare-deploy": "npm run package-functions-production",
+    "postppare-deploy": "chmod 755 functions/bin/funpack.js && npm version minor",
+    "predeploy": "npm run ppare-deploy",
+    "deploy": "npm publish",
+    "start": "node functions/index.js -e local"
+  },
+  "version": "0.1.0"
+}
