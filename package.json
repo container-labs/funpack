@@ -17,7 +17,6 @@
     ],
     "plugins": [
       "add-module-exports",
-      "transform-flow-strip-types",
       "transform-runtime",
       "transform-imports",
       "transform-inline-environment-variables"
