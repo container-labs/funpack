@@ -67,7 +67,8 @@
   },
   "peerDependencies": {
     "babel-runtime": "^7.0.0-beta.3",
-    "babel-preset-env": "^7.0.0-beta.3"
+    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-cli": "^7.0.0-beta.3"
   },
   "scripts": {
     "package-functions-production": "NODE_ENV='production' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'",

@@ -38,6 +38,7 @@ new Promise((resolve, reject) => {
   });
 })
   .then(() => new Promise((resolve, reject) => {
+    // TODO: move this to babel-core so we don't have to have a peer of babel-cli 
     exec(`NODE_ENV='${environment}' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'`, (error, stdout, stderr) => {
       logResult(error, stdout, stderr);
       if (error || stderr) {
