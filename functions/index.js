@@ -6,6 +6,10 @@ require("core-js/modules/es.promise");
 
 require("core-js/modules/es.regexp.exec");
 
+require("core-js/stable");
+
+require("regenerator-runtime/runtime");
+
 var _commander = _interopRequireDefault(require("commander"));
 
 var _child_process = _interopRequireDefault(require("child_process"));
@@ -47,7 +51,7 @@ new Promise(function (resolve, reject) {
   });
 }).then(function () {
   return new Promise(function (resolve, reject) {
-    // TODO: move this to babel-core so we don't have to have a peer of babel-cli 
+    // TODO: move this to babel-core so we don't have to have a peer of babel-cli
     exec("NODE_ENV='".concat(environment, "' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'"), function (error, stdout, stderr) {
       (0, _logResult["default"])(error, stdout, stderr);
 
