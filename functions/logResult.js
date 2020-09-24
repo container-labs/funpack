@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 function logResult(error, stdout, stderr) {
   if (error !== null) {
-    console.error(`exec error: ${error}`);
+    console.error("exec error: ".concat(error));
     return;
   }
 
   if (stderr) {
-    console.error(`stderr: ${stderr}`);
+    console.error("stderr: ".concat(stderr));
     return;
   }
 
@@ -20,5 +20,5 @@ function logResult(error, stdout, stderr) {
 }
 
 var _default = logResult;
-exports.default = _default;
+exports["default"] = _default;
 module.exports = exports["default"];

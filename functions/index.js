@@ -1,8 +1,10 @@
 "use strict";
 
-var _interopRequireDefault = require("babel-runtime/helpers/interopRequireDefault");
+require("core-js/modules/es.object.to-string");
 
-var _promise = _interopRequireDefault(require("babel-runtime/core-js/promise"));
+require("core-js/modules/es.promise");
+
+require("core-js/modules/es.regexp.exec");
 
 var _commander = _interopRequireDefault(require("commander"));
 
@@ -14,26 +16,28 @@ var _package = _interopRequireDefault(require("../package.json"));
 
 var _logResult = _interopRequireDefault(require("./logResult"));
 
-const exec = _child_process.default.exec;
-const packageVersion = _package.default.version;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-_commander.default.version(packageVersion);
+var exec = _child_process["default"].exec;
+var packageVersion = _package["default"].version;
 
-_commander.default.option('-e, --environment [environment]', 'NODE_ENV to use when packing', 'local');
+_commander["default"].version(packageVersion);
 
-_commander.default.parse(process.argv);
+_commander["default"].option('-e, --environment [environment]', 'NODE_ENV to use when packing', 'local');
 
-console.log('commander env', _commander.default.environment);
-let environment;
+_commander["default"].parse(process.argv);
 
-if (_commander.default.environment) {
-  environment = _commander.default.environment;
+console.log('commander env', _commander["default"].environment);
+var environment;
+
+if (_commander["default"].environment) {
+  environment = _commander["default"].environment;
 } // 1. delete the output directory
 // 2. use babel cli to transpile
 
 
-new _promise.default((resolve, reject) => {
-  (0, _rimraf.default)('functions/*', error => {
+new Promise(function (resolve, reject) {
+  (0, _rimraf["default"])('functions/*', function (error) {
     if (error) {
       reject();
       return;
@@ -41,20 +45,23 @@ new _promise.default((resolve, reject) => {
 
     resolve();
   });
-}).then(() => new _promise.default((resolve, reject) => {
-  exec(`NODE_ENV='${environment}' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'`, (error, stdout, stderr) => {
-    (0, _logResult.default)(error, stdout, stderr);
+}).then(function () {
+  return new Promise(function (resolve, reject) {
+    // TODO: move this to babel-core so we don't have to have a peer of babel-cli 
+    exec("NODE_ENV='".concat(environment, "' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'"), function (error, stdout, stderr) {
+      (0, _logResult["default"])(error, stdout, stderr);
 
-    if (error || stderr) {
-      reject();
-      return;
-    }
+      if (error || stderr) {
+        reject();
+        return;
+      }
 
-    resolve();
+      resolve();
+    });
   });
-})).then(() => {
+}).then(function () {
   console.log('functions fun-packed');
-}).catch(error => {
+})["catch"](function (error) {
   console.error(error);
   process.exit(1);
 });
