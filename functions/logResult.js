@@ -21,4 +21,4 @@ function logResult(error, stdout, stderr) {
 
 var _default = logResult;
 exports["default"] = _default;
-module.exports = exports["default"];
+module.exports = exports.default;
