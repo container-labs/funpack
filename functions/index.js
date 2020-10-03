@@ -6,15 +6,11 @@ require("core-js/modules/es.promise");
 
 require("core-js/modules/es.regexp.exec");
 
-require("core-js/stable");
-
-require("regenerator-runtime/runtime");
+var _rimraf = _interopRequireDefault(require("rimraf"));
 
 var _commander = _interopRequireDefault(require("commander"));
 
 var _child_process = _interopRequireDefault(require("child_process"));
-
-var _rimraf = _interopRequireDefault(require("rimraf"));
 
 var _package = _interopRequireDefault(require("../package.json"));
 
@@ -22,6 +18,7 @@ var _logResult = _interopRequireDefault(require("./logResult"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+// import 'regenerator-runtime/runtime';
 var exec = _child_process["default"].exec;
 var packageVersion = _package["default"].version;
 
@@ -51,7 +48,6 @@ new Promise(function (resolve, reject) {
   });
 }).then(function () {
   return new Promise(function (resolve, reject) {
-    // TODO: move this to babel-core so we don't have to have a peer of babel-cli
     exec("NODE_ENV='".concat(environment, "' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'"), function (error, stdout, stderr) {
       (0, _logResult["default"])(error, stdout, stderr);
 
