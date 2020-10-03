@@ -1,10 +1,7 @@
 // @flow
 import rimraf from 'rimraf';
-
-// import 'regenerator-runtime/runtime';
 import commander from 'commander';
 import childProcess from 'child_process';
-
 import packageFile from '../package.json';
 import logResult from './logResult';
 
@@ -39,14 +36,16 @@ new Promise((resolve, reject) => {
   });
 })
   .then(() => new Promise((resolve, reject) => {
-    exec(`NODE_ENV='${environment}' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'`, (error, stdout, stderr) => {
-      logResult(error, stdout, stderr);
-      if (error || stderr) {
-        reject();
-        return;
-      }
-      resolve();
-    });
+    exec(`NODE_ENV='${environment}' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'`,
+      (error, stdout, stderr) => {
+        logResult(error, stdout, stderr);
+        if (error || stderr) {
+          reject();
+          return;
+        }
+        resolve();
+      },
+    );
   }),
   )
   .then(() => {
