@@ -18,7 +18,6 @@ var _logResult = _interopRequireDefault(require("./logResult"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// import 'regenerator-runtime/runtime';
 var exec = _child_process["default"].exec;
 var packageVersion = _package["default"].version;
 
