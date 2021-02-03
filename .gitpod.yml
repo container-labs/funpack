@@ -1,5 +1,5 @@
 image:
-  file: .devcontainer/Dockerfile
+  file: .devcontainer/gitpod.Dockerfile
 
 tasks:
   - init: yarn install
