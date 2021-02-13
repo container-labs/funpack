@@ -11,17 +11,17 @@
   },
   "homepage": "https://github.com/container-labs/funpack#readme",
   "dependencies": {
-    "@babel/cli": "^7.12.13",
-    "@babel/core": "^7.12.13",
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
     "core-js": "^3.8.3",
     "rimraf": "^3.0.2"
   },
   "peerDependencies": {
-    "@babel/cli": "^7.12.13",
-    "@babel/core": "^7.12.13"
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-env": "^7.12.16",
     "@babel/preset-flow": "^7.12.13",
     "babel-eslint": "^10.1.0",
     "babel-plugin-add-module-exports": "1.0.4",
@@ -32,8 +32,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.1.0",
-    "eslint-plugin-react-hooks": "^4",
-    "flow-bin": "^0.144.0"
+    "eslint-plugin-react-hooks": "^4"
   },
   "keywords": [
     "compiler",
