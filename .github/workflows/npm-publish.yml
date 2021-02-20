@@ -1,0 +1,30 @@
+###### This file is managed by Terraform, edits will be over-written
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+          registry-url: 'https://registry.npmjs.org'
+      # shouldn't have to do this...
+      - run: git config --global user.name 'Sr Bot'
+      - run: git config --global user.email 'bot@containerlabs.io'
+      - run: npm install
+      # auto-bump to a new minor version
+      # - run: yarn version --minor --no-git-tag-version
+      - run: npm version minor
+      - run: npm run ppare-deploy-npm
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # publish commits
+      # - run: git commit -am "Bumping minor version"
+      - run: git push
