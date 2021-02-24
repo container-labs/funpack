@@ -11,17 +11,17 @@
   },
   "homepage": "https://github.com/container-labs/funpack#readme",
   "dependencies": {
-    "@babel/cli": "^7.12.16",
-    "@babel/core": "^7.12.16",
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
     "core-js": "^3.8.3",
     "rimraf": "^3.0.2"
   },
   "peerDependencies": {
-    "@babel/cli": "^7.12.16",
+    "@babel/cli": "^7.13.0",
     "@babel/core": "^7.12.16"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.16",
+    "@babel/preset-env": "^7.13.5",
     "@babel/preset-flow": "^7.12.13",
     "babel-eslint": "^10.1.0",
     "babel-plugin-add-module-exports": "1.0.4",
