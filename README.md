@@ -5,10 +5,6 @@
 like `webpack`, but for functions
 
 
-## into
-
-the welcome to my npm page section
-
 ## install
 
 because sometimes it's faster to copy and paste instead of type
