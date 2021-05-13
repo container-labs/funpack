@@ -11,9 +11,9 @@
   },
   "homepage": "https://github.com/container-labs/funpack#readme",
   "dependencies": {
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.15",
-    "core-js": "^3.10.1",
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.2",
+    "core-js": "^3.12.1",
     "rimraf": "^3.0.2"
   },
   "peerDependencies": {
@@ -21,13 +21,13 @@
     "@babel/core": "^7.12.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-env": "^7.14.2",
     "@babel/preset-flow": "^7.13.13",
     "babel-eslint": "^10.1.0",
     "babel-plugin-add-module-exports": "1.0.4",
     "babel-plugin-transform-imports": "^2.0.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "eslint": "^7.24.0",
+    "eslint": "^7.26.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
