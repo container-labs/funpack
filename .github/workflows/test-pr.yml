@@ -1,0 +1,25 @@
+###### This file is managed by Terraform, edits will be over-written
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+      # shouldn't have to do this...
+      - run: git config --global user.name 'Sr Bot'
+      - run: git config --global user.email 'bot@containerlabs.io'
+      - run: npm install
+      # auto-bump to a new minor version
+      # - run: yarn version --minor --no-git-tag-version
+      - run: npm version minor
+      - run: npm run ppare-deploy-npm

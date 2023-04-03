@@ -51,9 +51,9 @@
   "scripts": {
     "package-functions-production": "NODE_ENV='production' babel 'functionsES6' --out-dir 'functions' --copy-files --ignore 'node_modules'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ppare-deploy": "yarn run package-functions-production",
+    "ppare-deploy": "npm run package-functions-production",
     "postppare-deploy": "chmod 755 functions/bin/funpack.js && npm version minor",
-    "predeploy": "yarn run ppare-deploy",
+    "predeploy": "npm run ppare-deploy",
     "deploy": "npm publish",
     "ppare-deploy-npm": "npm run package-functions-production",
     "start": "node functions/index.js -e local",
